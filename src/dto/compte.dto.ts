@@ -2,8 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CompteDto {
   @ApiProperty() id: number;
-  @ApiProperty() numCompte: string;
-  @ApiProperty() numCarte: string;
+  @ApiProperty() numcompte: string;
+  @ApiProperty() numcarte: string;
   @ApiProperty() secretKey: string;
   
   @ApiProperty() solde: number;

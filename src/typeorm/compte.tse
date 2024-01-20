@@ -12,7 +12,7 @@ import { Carte } from './carte';
 export class Compte {
   @PrimaryGeneratedColumn() id: number;
   @Column({ name: 'numcompte' }) numcompte: string;
-  //@Column({ name: 'numcarte' }) numcarte: string;
+  @Column({ name: 'numcarte' }) numcarte: string;
   @Column() solde: number;
   @Column() nom: string;
   @Column({ name: 'prenoms' }) prenom: string;

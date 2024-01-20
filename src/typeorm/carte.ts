@@ -5,7 +5,7 @@ import { Compte } from './compte';
 export class Carte {
   @PrimaryColumn()
   id: number;
-  @Column()
+  @Column({name:'numcarte'})
   numcarte: string;
   @Column()
   numserie: number;

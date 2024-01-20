@@ -18,7 +18,7 @@ export class CompteService {
     return this.repo.findOne({ where: { id } });
   }
   async getByNumCompte(numCompte: string) {
-    const cpt = await this.repo.findOne({ where: { numCompte: numCompte } });
+    const cpt = await this.repo.findOne({ where: { numcompte: numCompte } });
     if (!cpt) throw new HttpException(ExceptionCode.NOT_FOUND, 404);
     return cpt;
   }
@@ -31,7 +31,7 @@ export class CompteService {
   }
   async update(body: CompteDto) {
     const carte = await this.reposCarte.findOne({
-      where: { numcarte: body.numCarte },
+      where: { numcarte: body.numcarte },
     });
     if (!carte) throw new HttpException(ExceptionCode.NOT_FOUND, 404);
     // if (carte.idcompte != null) {

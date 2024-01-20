@@ -10,7 +10,7 @@ export class TransactionDto {
   @ApiProperty() montant: number;
   @ApiProperty() userId: number;
   @ApiProperty() compteId: number;
-  @ApiProperty() carteId: number;
+  @ApiProperty() numcarte: number;
   @ApiProperty() serviceId: number;
   @ApiProperty() status: number;
   @ApiProperty() sens: number;
@@ -19,7 +19,7 @@ export class TransactionDto {
   @ApiProperty() agenceId: number;
   @ApiProperty() commentaire: string;
   @ApiProperty() credit: number;
-  @ApiProperty() datePaiement: Date;
+  //@ApiProperty() datePaiement: Date;
   @ApiProperty() codeBarre: string;
   @ApiProperty() matricule: string;
 }
