@@ -27,8 +27,12 @@ export class TransactionService {
     });
   }
   async create(item: TransactionDto, decoded: any) {
+    console.log(
+      '---------------------create transaction----------------',
+      decoded,
+      item,
+    );
     try {
-      console.log(decoded);
       const compte = await this.repoCompte.findOne({
         where: { id: item.compteId },
       });
@@ -36,7 +40,7 @@ export class TransactionService {
       if (compte.solde < item.montant)
         throw new HttpException(ExceptionCode.INSUFFISANT_BALANCE, 404);
       const tnx = await this.repo.save(
-        this.repo.create({ ...item, userId: decoded.id, serviceId: 2 }),
+        this.repo.create({ ...item , userId: decoded.id, serviceId: 2 }),
       );
 
       if (!tnx) throw new HttpException(ExceptionCode.FAILLURE, 400);

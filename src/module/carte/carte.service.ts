@@ -23,6 +23,7 @@ export class CarteServie {
     return carte;
   }
   async getByNumCarte(numCarte: string) {
+    console.log('--------------get by num carte----------------', numCarte);
     const carte = await this.carte.findOne({
       where: { numcarte: Equal(numCarte) },
       relations: { compte: true },

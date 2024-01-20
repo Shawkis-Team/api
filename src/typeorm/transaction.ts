@@ -5,17 +5,17 @@ import {
   ManyToOne,
   JoinColumn,
   JoinTable,
+  CreateDateColumn,
 } from 'typeorm';
 import { User } from './user';
 import { Compte } from './compte';
 import { Carte } from './carte';
 import { Service } from './service';
 
-@Entity()
+@Entity({ orderBy: { id: 'DESC' } })
 export class Transaction {
   @PrimaryGeneratedColumn() id: number;
   @Column({ name: 'num_transac' }) numTransac: string;
-  @Column({ name: 'date_transac' }) dateTransac: Date;
   @Column() montant: number;
   @Column({ name: 'idutilisateur' }) userId: number;
   @ManyToOne(() => User)
@@ -37,7 +37,8 @@ export class Transaction {
   @Column({ name: 'fk_agence' }) agenceId: number;
   @Column() commentaire: string;
   @Column() credit: number;
-  @Column({ name: 'date_paiement' }) datePaiement: Date;
+  @CreateDateColumn({ name: 'date_paiement' }) datePaiement: Date;
+  @CreateDateColumn({ name: 'date_transac' }) dateTransac: Date;
   @Column({ name: 'codebarre' }) codeBarre: string;
   @Column() matricule: string;
 }
