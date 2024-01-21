@@ -2,8 +2,9 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TransactionDto } from 'src/dto/transaction.dto';
 import { ExceptionCode } from 'src/exeption_code';
-import { Carte, Compte, Transaction } from 'src/typeorm';
+import { Carte, Compte, Transaction, User } from 'src/typeorm';
 import { Repository } from 'typeorm';
+import { CreateUserDto } from '../users/dto/createUser.dto';
 
 @Injectable()
 export class TransactionService {
@@ -12,9 +13,11 @@ export class TransactionService {
     @InjectRepository(Compte) private repoCompte: Repository<Compte>,
     @InjectRepository(Carte) private reposCarte: Repository<Carte>,
   ) {}
-  async getS() {
+  async getS({ by }: { by: CreateUserDto }) {
     console.log('-----------------------get transaction-----------------');
     return await this.repo.find({
+      where: { userId: by.id },
+
       relations: {
         compte: true,
         service: true,

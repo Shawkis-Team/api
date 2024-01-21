@@ -13,16 +13,19 @@ import { TransactionDto } from 'src/dto/transaction.dto';
 import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { LocalAuthGuard } from 'src/middleware/local_auth.guard';
 import { Request } from 'express';
+import { CreateUserDto } from '../users/dto/createUser.dto';
 @ApiTags('transaction')
 @Controller('transaction')
 export class TransactionController {
   constructor(private service: TransactionService) {}
   @Get('')
+  @UseGuards(LocalAuthGuard)
   @ApiResponse({ type: [TransactionDto], status: 200 })
-  getS() {
-    return this.service.getS();
+  getS(@Req() req: Request) {
+    return this.service.getS({ by: req['user'] as CreateUserDto });
   }
   @Get(':id')
+  @UseGuards(LocalAuthGuard)
   @ApiResponse({ type: TransactionDto, status: 200 })
   get(@Param('id') id: number) {
     return this.service.get(id);
