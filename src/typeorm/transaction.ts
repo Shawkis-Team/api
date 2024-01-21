@@ -28,7 +28,7 @@ export class Transaction {
   @ManyToOne(() => Service)
   @JoinColumn({ name: 'idservice' })
   service: Service;
- //@Column({ name: 'numcarte' }) carteId: number;
+  //@Column({ name: 'numcarte' }) carteId: number;
   //@Column({ name: 'id_compte' }) compteId: number;
   @Column({ name: 'idservice' }) serviceId: number;
   @Column() statut: number;
@@ -41,4 +41,5 @@ export class Transaction {
   //@Column({ name: 'date_paiement' }) datePaiement: Date;
   @Column({ name: 'codebarre' }) codeBarre: string;
   @Column() matricule: string;
+  @CreateDateColumn({ name: 'date_transac' }) dateTransac: Date;
 }

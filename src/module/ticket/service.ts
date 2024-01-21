@@ -2,7 +2,7 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExceptionCode } from 'src/exeption_code';
 import { Ticket } from 'src/typeorm/ticket';
-import { Equal, Repository } from 'typeorm';
+import { Equal, In, IsNull, Not, Repository } from 'typeorm';
 
 @Injectable()
 export class TicketService {
@@ -21,12 +21,14 @@ export class TicketService {
       where: { refTicket: Equal(ref) },
       relations: { compte: true, carte: true },
     });
+    console.log(ticket);
+    if (!ticket) throw new HttpException(ExceptionCode.NOT_FOUND, 404);
+
     if (ticket.status !== 0)
       throw new HttpException(
         { ...ExceptionCode.NOT_FOUND, message: 'ticket invalid' },
         404,
       );
-    if (!ticket) throw new HttpException(ExceptionCode.NOT_FOUND, 404);
     return ticket;
   }
 }

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CarteDto } from 'src/dto/carte.dto';
 import { ExceptionCode } from 'src/exeption_code';
 import { Carte } from 'src/typeorm';
-import { Equal, Repository } from 'typeorm';
+import { Equal, IsNull, Not, Repository } from 'typeorm';
 
 @Injectable()
 export class CarteServie {
@@ -25,7 +25,7 @@ export class CarteServie {
   async getByNumCarte(numCarte: string) {
     console.log('--------------get by num carte----------------', numCarte);
     const carte = await this.carte.findOne({
-      where: { numcarte: Equal(numCarte) },
+      where: { numcarte: Equal(numCarte), idcompte: Not(IsNull()) },
       relations: { compte: true },
     });
     if (!carte) throw new HttpException(ExceptionCode.NOT_FOUND, 404);
