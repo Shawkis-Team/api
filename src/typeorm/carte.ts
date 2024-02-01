@@ -5,11 +5,12 @@ import { Compte } from './compte';
 export class Carte {
   @PrimaryColumn()
   id: number;
-  @Column({name:'numcarte'})
+  @Column({ name: 'numcarte' })
   numcarte: string;
   @Column()
   numserie: number;
-
+  @Column({ name: 'uid' })
+  uid: string;
   @Column('boolean')
   etat: boolean;
   @Column()
@@ -27,7 +28,7 @@ export class Carte {
   nomCarte: string;
   @Column({ name: 'mail_carte' })
   mailCarte: string;
- 
+
   @Column()
   solde: number;
   @Column()

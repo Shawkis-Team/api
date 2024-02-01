@@ -16,7 +16,7 @@ export class CarteServie {
   }
   async getCarteByTag(tag: string) {
     const carte = await this.carte.findOne({
-      where: { cleSecrete: Equal(tag) },
+      where: { uid: Equal(tag) },
       relations: { compte: true },
     });
     if (!carte) throw new HttpException(ExceptionCode.NOT_FOUND, 404);

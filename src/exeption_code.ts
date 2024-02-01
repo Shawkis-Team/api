@@ -1,13 +1,59 @@
 export const ExceptionCode = {
-  SUCCEEDED: {
+  LOGIN_SUCCESS: {
+    code: 'SUCCEEDED',
     status: 200,
-    code: 'SUCCEDDED',
-    message: 'Operation reussi avec succes',
+    message: 'Connexion etablie avec success',
+  },
+  LOGIN_FAILLURE: {
+    code: 'FAILLURE',
+    status: 401,
+    message: 'Identifiant de connexion incorrect',
+  },
+  LOGOUT_SUCCESS: {
+    code: 'SUCCEEDED',
+    status: 200,
+
+    message: 'DEconnexion reussi avec success',
+  },
+  SUCCEEDED: {
+    code: 'SUCCEEDED',
+    status: 200,
+    message: 'Traitement reussi avec success',
+  },
+  POSITIVE_AMOUNT: {
+    code: 'FAILLURE',
+    status: 400,
+    message: 'total amount doit etre > 0',
+  },
+  CARD_ALREADY_ENROLLED: {
+    code: 'FAILURE',
+    status: 400,
+    message: 'La carte est déjà inscrite.',
+  },
+  EXCEL_FILE_NOT_FOUND: {
+    code: 'EXCEL_FILE_NOT_FOUND',
+    status: 404,
+    message: 'excel file is required',
   },
   FAILLURE: {
-    status: 400,
     code: 'FAILLURE',
-    message: 'Echec lors du traitement de la requete',
+    status: 500,
+    message: "Une Erreur c'est produite vieillez réessayer",
+  },
+  INSUFFISANT_BALANCE: {
+    code: 'FAILLURE',
+    status: 407,
+    message: 'Solde insufficasant',
+  },
+  NOT_FOUND: {
+    code: 'NOT_FOUND',
+    status: 404,
+    message: 'Entity not found',
+  },
+  DUPLICATE_ITEM: {
+    code: 'DUPLICATE_ITEM',
+    status: 404,
+    message: 'Duplicate Item',
   },
   INVALID_CREDENTIAL: {
     status: 401,
@@ -18,15 +64,5 @@ export const ExceptionCode = {
     status: 401,
     code: 'BAD_PROFILE',
     message: 'Vous avez pas le Bon profile pour se connecter',
-  },
-  INSUFFISANT_BALANCE: {
-    status: 404,
-    code: 'INSUFFISANT_BALANCE',
-    message: 'Solde de votre compte insuffisant',
-  },
-  NOT_FOUND: {
-    status: 404,
-    code: 'NOT_FOUND',
-    message: "Nous ne parvenons a trouver l 'entité rechercher",
   },
 };

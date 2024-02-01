@@ -33,22 +33,23 @@ export class CompteService {
     const carte = await this.reposCarte.findOne({
       where: { numcarte: body.numcarte },
     });
+    const { numcarte, ...rest } = body;
+    console.log('--------------------carte-------------------', carte);
     if (!carte) throw new HttpException(ExceptionCode.NOT_FOUND, 404);
-    // if (carte.idcompte != null) {
-    //   throw new HttpException(
-    //     {
-    //       ...ExceptionCode.FAILLURE,
-    //       message: "La carte que vous essayez d ' enroller a dejà un compte",
-    //     },
-    //     400,
-    //   );
-    // }
-    const up = await this.repo.update({ id: body.id }, body);
+    if (carte.uid !== null)
+      throw new HttpException(ExceptionCode.CARD_ALREADY_ENROLLED, 404);
+    // const up = await this.repo.update({ id: body.id }, rest);
     carte.idcompte = body.id;
     carte.statut = 2;
-    carte.cleSecrete = body.secretKey;
-    await this.reposCarte.save(carte);
-    if (up.affected > 0) return ExceptionCode.SUCCEEDED;
-    throw new HttpException(ExceptionCode.NOT_FOUND, 404);
+    carte.uid = body.secretKey;
+    return this.reposCarte
+      .save(carte)
+      .then((value) => {
+        return ExceptionCode.SUCCEEDED;
+      })
+      .catch((err) => {
+        throw new HttpException(ExceptionCode.NOT_FOUND, 404);
+      });
+    // if (up.affected > 0) return ;
   }
 }

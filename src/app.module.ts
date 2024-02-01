@@ -23,7 +23,7 @@ import { TicketModule } from './module/ticket/module';
       database: 'p38rj_bdbazagor',
       password: 'd_8dMHI4qX4',
       username: 'p38rj_bazagouser',
-      port: 3307,
+      port: 3306,
 
       // host: 'localhost',
       // port: 3307,

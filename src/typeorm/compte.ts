@@ -1,12 +1,4 @@
-import {
-  Entity, 
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToMany,
-  ManyToOne,
-  JoinColumn,
-  OneToMany,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Carte } from './carte';
 @Entity()
 export class Compte {
