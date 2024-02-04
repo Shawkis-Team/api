@@ -19,6 +19,7 @@ import { TicketModule } from './module/ticket/module';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
+      
       host: '84.16.72.210',
       database: 'p38rj_bdbazagor',
       password: 'd_8dMHI4qX4',

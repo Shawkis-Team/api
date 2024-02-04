@@ -14,4 +14,6 @@ export class CreateUserDto {
   codePin: number;
   @ApiProperty()
   profilId: number;
+  @ApiProperty()
+  agence: number;
 }

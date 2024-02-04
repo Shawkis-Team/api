@@ -5,6 +5,7 @@ import { ExceptionCode } from 'src/exeption_code';
 import { Carte, Compte, Transaction, User } from 'src/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../users/dto/createUser.dto';
+import { UUID } from 'typeorm/driver/mongodb/bson.typings';
 
 @Injectable()
 export class TransactionService {
@@ -30,7 +31,7 @@ export class TransactionService {
       relations: { compte: true },
     });
   }
-  async create(item: TransactionDto, decoded: any) {
+  async create(item: TransactionDto, decoded: CreateUserDto) {
     console.log(
       '---------------------create transaction----------------',
       decoded,
@@ -50,7 +51,9 @@ export class TransactionService {
           ...item,
           dateTransac: new Date(),
           userId: decoded.id,
-          serviceId: 2,
+          serviceId: item.serviceId,
+          agenceId: decoded.agence,
+          numTransac: `${Math.floor(Math.random() * 1000000000)}`,
         }),
       );
 
